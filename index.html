@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>私人DNS解析-检测页面</title>
+<script>
+// 检查iframe是否成功加载
+function checkIframeLoad() {
+    var iframe = document.getElementById('myIframe');
+    try {
+        // 尝试获取iframe的内容，如果跨域或无法访问将抛出异常
+        var doc = iframe.contentDocument || iframe.contentWindow.document;
+        // 检查文档是否为空
+        if (doc.body.innerHTML == "") {
+            showError();
+        }
+    } catch(e) {
+        // 捕获异常，显示错误信息
+        showError();
+    }
+}
+
+// 显示错误信息
+function showError() {
+    document.getElementById('error-message').style.display = 'block';
+}
+</script>
+</head>
+<body onload="checkIframeLoad()">
+<p>如果您发现下面"检测区间"中间的内容无法正常显示或显示"提示出错"，那代表着"私人DNS解析"工作异常，反之就代表着成功！</p>
+<p>检测区间开始！</p>
+<iframe id="myIframe" src="http://100.110.162.50:80" onload="iframeLoaded()" width="800" height="600" style="border:none;"></iframe>
+<p>检测区间结束！</p>
+<p>版权所有：三棚桥保密局 </p>
+</body>
+</html>
