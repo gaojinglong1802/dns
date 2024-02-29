@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>私人DNS解析-检测页面</title>
-<script>
-// 检查iframe是否成功加载
-function checkIframeLoad() {
-    var iframe = document.getElementById('myIframe');
-    try {
-        // 尝试获取iframe的内容，如果跨域或无法访问将抛出异常
-        var doc = iframe.contentDocument || iframe.contentWindow.document;
-        // 检查文档是否为空
-        if (doc.body.innerHTML == "") {
-            showError();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私人DNS解析-检测页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f4f4f4;
         }
-    } catch(e) {
-        // 捕获异常，显示错误信息
-        showError();
-    }
-}
 
-// 显示错误信息
-function showError() {
-    document.getElementById('error-message').style.display = 'block';
-}
-</script>
+        #container {
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+            margin-top: 20px;
+        }
+
+        #error-message {
+            display: none;
+            color: red;
+            font-weight: bold;
+        }
+
+        @media only screen and (min-width: 400px) {
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
 <body onload="checkIframeLoad()">
-<p>如果您发现下面"检测区间"中间的内容无法正常显示或显示"提示出错"，那代表着"私人DNS解析"工作异常，反之就代表着成功！</p>
-<p>检测区间开始！</p>
-<iframe id="myIframe" src="http://100.110.162.50:80" onload="iframeLoaded()" width="800" height="600" style="border:none;"></iframe>
-<p>检测区间结束！</p>
-<p>版权所有：三棚桥保密局 </p>
+    <div id="container">
+        <h1>私人DNS解析-检测页面</h1>
+        <p>如果您发现下面"检测区间"中间的内容无法正常显示(空白)或显示"提示出错"，那代表着"私人DNS解析"工作异常，反之就代表着成功！</p>
+        <p>检测区间(1)开始！</p>
+        <iframe src="http://dns2.184439103.xyz" onload="iframeLoaded()" style="border:none;"></iframe>
+        <p>检测区间(1)结束！</p>
+        <p>检测区间(2)开始！</p>
+        <iframe src="http://dns3.184439103.xyz" onload="iframeLoaded()" style="border:none;"></iframe>
+        <p>检测区间(2)结束！</p>
+        <p id="error-message">测试失败，请检查网络设置。</p>
+        <p>版权所有：三棚桥保密局</p>
+    </div>
 </body>
 </html>
